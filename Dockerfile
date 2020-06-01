@@ -1,9 +1,14 @@
 FROM python:3.8-slim
 
 RUN apt-get update -q \
-  && apt-get install --no-install-recommends -qy \
+  && apt-get install -y \
     inetutils-ping \
-  && rm -rf /var/lib/apt/lists/*
+    gcc \
+    libffi-dev \
+    libgcrypt-dev \
+    libjpeg-dev \
+    zlib1g-dev \
+  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY [ "requirements.txt", "/dashmachine/" ]
 
